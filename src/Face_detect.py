@@ -17,17 +17,18 @@ import cv2
 import copy
 
 
-# Start of Part A
+# Data prep
 # Note MUST CHANGE PICTURE DIRECTORIES TO MATCH YOUR COMPUTERS 
-paths = ["/Users/jorge/Desktop/Luke", "/Users/jorge/Desktop/Janet", "/Users/jorge/Desktop/Gilbert"]
-names = ["Luke", "Janet", "Gilbert"]
+paths = ["../Pictures/Luke", "../Pictures/Janet", "../Pictures/Gilbert"] #change if you want to put your own pictures
+names = ["Luke", "Janet", "Gilbert"]. #change target names for your own names
 
 X = prf.load_images(paths, names)
-name_dic = {1:" Luke", 2:" Janet", 3:" Gilbert"}
+name_dic = {1:" Luke", 2:" Janet", 3:" Gilbert"} #change target dictionary for your own photos and names.
 
 # creating target
-y = np.concatenate((np.ones(40), np.ones(37) *2, np.ones(40) * 3))
+y = np.concatenate((np.ones(40), np.ones(37) *2, np.ones(40) * 3)) ## change depending how many targets you will have.
 
+Testing
 Errors = 0
 for i in range(X.shape[0]):
     Xtest = X[i]
@@ -46,7 +47,7 @@ print("success rate: ", (1 - (Errors/X.shape[0])) * 100, "%")
 
 # START OF PART C
 #NOTE MUST CHANGE PICTURE DIRECTORY TO MATCH YOUR INDIVIDUAL DIRECTORY
-GuessPicture = "/Users/jorge/Desktop/whoswho.JPG"
+GuessPicture = "../Pictures/whoswho.JPG"
 faces = prf.get_faces(GuessPicture)
 predictions = prf.pca_svm_pred(faces, md_pca, md_clf)
 print("PCA+SVM predition for person 1: {}".format(name_dic[predictions[0]]))
